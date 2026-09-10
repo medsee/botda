@@ -1,0 +1,70 @@
+{
+  "_readme": "memebot v0.1 - PAPER TRADING ONLY. No real money is moved by this version.",
+
+  "chain": "solana",
+  "mode": "paper",
+  "capital_usd": 500.0,
+  "poll_interval_sec": 60,
+
+  "universe": {
+    "source": "dexscreener",
+    "max_tokens_per_pass": 40
+  },
+
+  "filters": {
+    "min_liquidity_usd": 8000,
+    "max_liquidity_usd": 500000,
+    "min_volume_h1_usd": 3000,
+    "min_txns_m5": 10,
+    "min_buy_ratio_m5": 0.9,
+    "min_age_minutes": 3,
+    "max_age_minutes": 2880,
+    "min_fdv_usd": 15000,
+    "max_fdv_usd": 3000000,
+    "max_change_m5_pct": 180,
+    "min_change_m5_pct": -40,
+    "blocked_symbols": ["USDC", "SOL", "WETH", "WBTC"]
+  },
+
+  "scoring": {
+    "weights": {
+      "buy_ratio_m5": 25,
+      "volume_h1": 20,
+      "liquidity": 15,
+      "txns_m5": 15,
+      "momentum_m5": 15,
+      "age_sweetspot": 10
+    },
+    "min_score_to_trade": 55
+  },
+
+  "risk": {
+    "risk_per_trade_pct": 1.5,
+    "max_position_usd": 60.0,
+    "max_open_positions": 5,
+    "max_deployed_pct": 25.0,
+    "daily_loss_limit_pct": 3.0,
+    "cooldown_after_loss_minutes": 30
+  },
+
+  "exits": {
+    "stop_loss_pct": -20.0,
+    "take_profit_ladder": [
+      { "gain_pct": 50, "sell_pct": 40 },
+      { "gain_pct": 100, "sell_pct": 30 },
+      { "gain_pct": 200, "sell_pct": 20 }
+    ],
+    "trailing_stop_pct": 15.0,
+    "trailing_activation_pct": 25.0,
+    "max_hold_minutes": 240,
+    "stale_minutes": 30,
+    "stale_band_pct": 5.0
+  },
+
+  "costs": {
+    "fee_bps_per_side": 110,
+    "priority_fee_usd": 0.30,
+    "assumed_entry_slippage_pct": 2.0,
+    "assumed_exit_slippage_pct": 3.0
+  }
+}
